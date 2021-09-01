@@ -1,7 +1,6 @@
 import { useState, FC } from "react";
 import Card from "../styledComponents/card";
 
-
 import {
   useDecrypt,
   useEncryptt,
@@ -10,9 +9,13 @@ import {
 
 const Encrypt: FC = () => {
   const [toEncrypt, settoEncrypt] = useState("");
+
   const { getKey, publicKey, err } = usePublicKey();
+
   const encrypt = useEncryptt(publicKey);
+
   const decrypt = useDecrypt();
+  
   const [state, set] = useState({
     encrypted: "",
     decrypted: "",

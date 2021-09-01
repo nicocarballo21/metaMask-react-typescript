@@ -37,7 +37,6 @@ export function useEncryptt(publicKey: string) {
   const web3 = useWeb3();
 
   async function encrypt(str: string): Promise<string | null> {
-    console.log(publicKey);
     try {
       return web3.utils.toHex(
         JSON.stringify(
