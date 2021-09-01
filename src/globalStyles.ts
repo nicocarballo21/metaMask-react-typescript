@@ -21,6 +21,11 @@ const GlobalStyles = createGlobalStyle`
     border-radius: 10px;
     background-color: orange;
     border-style: none;
+
+        &:hover {
+            background-color: #FFC205
+        }
+
     }
 
     input {
