@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from "react"
 import MetaMaskOnboarding from "@metamask/onboarding"
 import styled from 'styled-components'
 

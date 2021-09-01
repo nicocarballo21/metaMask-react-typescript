@@ -1,6 +1,10 @@
+import Onboarding from './components/onBoardingBtn'
+import SendEth from './components/sendEth'
 import styled from 'styled-components'
 import './index.css'
-import Onboarding from './components/onBoardingBtn'
+
+import Web3 from "web3"
+const web3 = new Web3(Web3.givenProvider || "http://localhost:3000")
 
 const Container = styled.div `
   display: flex;
@@ -13,9 +17,9 @@ function App() {
   return (
     <Container>
       <Onboarding />
-      <h2>hl</h2>
+      <SendEth  web3={web3} />
     </Container>
-  
+   
   );
 }
 

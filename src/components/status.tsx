@@ -1,16 +1,14 @@
-import React from "react"
-
-// import useStatusNetwork from "../customHooks/useStatusNetwork"
+import useStatusNetwork from "../customHooks/useStatusNetwork"
 import Button from '../styledComponents/button'
 
 
 const Status = () => {
-//   const [getNetworkId, getChainId] = useStatusNetwork()
+  const [getNetworkId, getChainId] = useStatusNetwork()
 
   return (
     <div>
-      <Button> Network ID </Button>
-      <Button> Chain ID </Button>
+      <Button onClick={getNetworkId}> Network ID </Button>
+      <Button onClick={getChainId}> Chain ID </Button>
     </div>
   )
 }
