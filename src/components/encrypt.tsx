@@ -1,27 +1,49 @@
-import { useState, FC } from "react"
-import Card from '../styledComponents/card'
-import Button from '../styledComponents/button'
-import Input from '../styledComponents/input'
-import P from '../styledComponents/p'
+import { useState, FC } from "react";
+import Card from "../styledComponents/card";
+import Button from "../styledComponents/button";
+import Input from "../styledComponents/input";
+import P from "../styledComponents/p";
 
-import useEncrypt from "../customHooks/useEncrypt"
+import {
+  useDecrypt,
+  useEncryptt,
+  usePublicKey,
+} from "../customHooks/useEncrypt";
 
-interface props {
-    web3: any;
-}
+const Encrypt: FC = () => {
+  const [toEncrypt, settoEncrypt] = useState("");
+  const { getKey, publicKey, err } = usePublicKey();
+  const encrypt = useEncryptt(publicKey);
+  const decrypt = useDecrypt();
+  const [state, set] = useState({
+    encrypted: "",
+    decrypted: "",
+    error: "",
+    publicKey: "",
+  });
 
-const Encrypt: FC<props> = ({ web3 }) => {
-  const [toEncrypt, settoEncrypt] = useState("")
-  const [publicKey, err, decryptedWord, encrypted, functions ] = useEncrypt(
-    web3,
-    toEncrypt
-  )
-  
+  async function handleEncrypt() {
+    const value = await encrypt(toEncrypt);
+    if (value === null) return;
+
+    set({ ...state, encrypted: value });
+  }
+
+  async function handleDecrypt() {
+    const value = await decrypt(state.encrypted);
+    if (value === null) return;
+
+    set({ ...state, decrypted: value });
+  }
+
   return (
-    <Card >
+    <Card>
       <div>
         <P style={{ color: "white" }}>Here you can Encrypt / Decrypt</P>
-        <Button onClick={functions.getPublicKey} disabled={publicKey? true: false}> Get encryption key </Button>
+        <Button onClick={getKey} disabled={publicKey ? true : false}>
+          {" "}
+          Get encryption key{" "}
+        </Button>
 
         {/* error message */}
         {err && <P>Sorry! We can't encrypt anything without the key</P>}
@@ -31,28 +53,29 @@ const Encrypt: FC<props> = ({ web3 }) => {
             <P>Your encrypt key is: {publicKey}</P>
             <Input
               placeholder="To encrypt.."
-              onChange={({ target }) => settoEncrypt(target.value)}>
-            </Input>
+              onChange={({ target }) => settoEncrypt(target.value)}
+            ></Input>
 
-            <Button onClick={functions.encryptF}> Encrypt </Button>
+            <Button onClick={handleEncrypt}> Encrypt </Button>
           </div>
         )}
 
-        {encrypted && (
+        {state.encrypted && (
           <div>
-            <P>Your encrypted word is: {encrypted} </P>
+            <P>Your encrypted word is: {state.encrypted} </P>
             <hr />
             <P style={{ color: "white" }}>Decrypt action:</P>
 
-            <Button onClick={functions.decrypt}> Decrypt </Button>
+            <Button onClick={handleDecrypt}> Decrypt </Button>
 
-            {decryptedWord && <P> Your word decrypted is: {decryptedWord}</P> }
-
+            {state.decrypted && (
+              <P> Your word decrypted is: {state.decrypted}</P>
+            )}
           </div>
         )}
       </div>
     </Card>
-  )
-}
+  );
+};
 
-export default Encrypt
+export default Encrypt;

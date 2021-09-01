@@ -1,83 +1,87 @@
-import { useState, useEffect, useRef } from "react"
-import MetaMaskOnboarding from "@metamask/onboarding"
+import { useState, useEffect, useRef } from "react";
+import MetaMaskOnboarding from "@metamask/onboarding";
 
-import Button from '../styledComponents/button'
-import Card from '../styledComponents/card'
-import P from '../styledComponents/p'
-import Status from "./status"
+import Button from "../styledComponents/button";
+import Card from "../styledComponents/card";
+import P from "../styledComponents/p";
+import Status from "./status";
 
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const BtnsContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
 
-declare let window: any;
-const ONBOARD_TEXT = "Click here to install MetaMask!"
-const CONNECT_TEXT = "Connect"
-const CONNECTED_TEXT = "Connected"
+const ONBOARD_TEXT = "Click here to install MetaMask!";
+const CONNECT_TEXT = "Connect";
+const CONNECTED_TEXT = "Connected";
 
 const OnboardingButton = () => {
-  const [buttonText, setButtonText] = useState(ONBOARD_TEXT)
-  const [isDisabled, setDisabled] = useState(false)
-  const [accounts, setAccounts] = useState([])
-  let onboarding: any = useRef()
+  const [buttonText, setButtonText] = useState(ONBOARD_TEXT);
+  const [isDisabled, setDisabled] = useState(false);
+  const [accounts, setAccounts] = useState<string[]>([]);
+  let onboarding: any = useRef();
 
   useEffect(() => {
     if (!onboarding.current) {
-      onboarding.current = new MetaMaskOnboarding()
+      onboarding.current = new MetaMaskOnboarding();
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    const handleNewAccounts = (newAccounts: []) => {
-      setAccounts(newAccounts)
-    }
+    const handleNewAccounts = (newAccounts: string[]) => {
+      setAccounts(newAccounts);
+    };
+
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-      window.ethereum.on("accountsChanged", handleNewAccounts)
+      window.ethereum.on("accountsChanged", handleNewAccounts);
       return () => {
-        window.ethereum.off("accountsChanged", handleNewAccounts)
-      }
+        window.ethereum.off("accountsChanged", handleNewAccounts);
+      };
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       if (accounts.length > 0) {
-        setButtonText(CONNECTED_TEXT)
-        setDisabled(true)
-        onboarding.current.stopOnboarding()
+        setButtonText(CONNECTED_TEXT);
+        setDisabled(true);
+        onboarding.current.stopOnboarding();
       } else {
-        setButtonText(CONNECT_TEXT)
-        setDisabled(false)
+        setButtonText(CONNECT_TEXT);
+        setDisabled(false);
       }
     }
-  }, [accounts])
+  }, [accounts]);
 
   const onClick = async () => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       try {
-        const newAccounts = await window.ethereum.request({ method: "eth_requestAccounts" })
-        setAccounts(newAccounts)
-        window.alert("Login success!")
+        const newAccounts = await window.ethereum.request<string[]>({
+          method: "eth_requestAccounts",
+        });
+        setAccounts(newAccounts);
+        window.alert("Login success!");
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     } else {
-      onboarding.current.startOnboarding()
+      onboarding.current.startOnboarding();
     }
-  }
+  };
 
   return (
     <Card>
       <BtnsContainer>
-          <Button onClick={onClick} disabled={isDisabled} >{buttonText}</Button>
-          <Status/>
+        <Button onClick={onClick} disabled={isDisabled}>
+          {buttonText}
+        </Button>
+        <Status />
       </BtnsContainer>
       <P>Account: {accounts}</P>
     </Card>
-  )
-}
+  );
+};
 
-export default OnboardingButton
+export default OnboardingButton;
