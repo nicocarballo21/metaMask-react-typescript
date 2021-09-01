@@ -3,8 +3,6 @@ import { encrypt } from "eth-sig-util"
 
 
 declare let window: any;
-
-
 export default function useEncrypt( web3: any, toEncrypt: string ) {
     const [publicKey, setPublickey] = useState("")
     const [err, seterr] = useState(false)
@@ -14,8 +12,6 @@ export default function useEncrypt( web3: any, toEncrypt: string ) {
     let functions: any = {}
     
   
- 
-
   useEffect(() => {
     const init = async () => {
       const accounts_res = await web3.eth.getAccounts()
@@ -36,8 +32,6 @@ export default function useEncrypt( web3: any, toEncrypt: string ) {
         seterr(true)
     }
   }
-
-  
 
   const encryptF = async () => {
     try {

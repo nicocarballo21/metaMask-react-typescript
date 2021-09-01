@@ -12,8 +12,6 @@ interface props {
 const SendEth: FC<props> = ({ web3 }) => {
   const [value, setvalue] = useState('')
 
-
-
   const send_eth = async () => {
     const accounts = await web3.eth.getAccounts()
     web3.eth.sendTransaction(

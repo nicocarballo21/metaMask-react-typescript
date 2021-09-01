@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from "react"
 import MetaMaskOnboarding from "@metamask/onboarding"
-import styled from 'styled-components'
 
 import Button from '../styledComponents/button'
 import Card from '../styledComponents/card'
 import P from '../styledComponents/p'
 import Status from "./status"
 
+import styled from 'styled-components'
 
 const BtnsContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 
 declare let window: any;
@@ -70,13 +70,13 @@ const OnboardingButton = () => {
   }
 
   return (
-        <Card>
-            <BtnsContainer>
-                <Button onClick={onClick} disabled={isDisabled} >{buttonText}</Button>
-                <Status/>
-            </BtnsContainer>
-            <P>Account: {accounts}</P>
-        </Card>
+    <Card>
+      <BtnsContainer>
+          <Button onClick={onClick} disabled={isDisabled} >{buttonText}</Button>
+          <Status/>
+      </BtnsContainer>
+      <P>Account: {accounts}</P>
+    </Card>
   )
 }
 

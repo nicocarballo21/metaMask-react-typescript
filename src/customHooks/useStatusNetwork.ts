@@ -1,6 +1,10 @@
 
 declare let window: any;
+
+
 const useStatusNetwork = () => {
+
+  
   const getNetworkId = async () => {
     try {
       const _id = await window.ethereum.request({
@@ -11,6 +15,8 @@ const useStatusNetwork = () => {
       console.log(err)
     }
   }
+
+
   const getChainId = async () => {
     try {
       const _id = await window.ethereum.request({

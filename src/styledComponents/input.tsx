@@ -19,9 +19,7 @@ const Input = styled.input`
     &::placeholder{
       color: white
     }
-  }
-
-  
+  }  
 `;
 
 export default Input

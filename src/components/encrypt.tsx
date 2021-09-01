@@ -1,6 +1,4 @@
-import { useState, FC} from "react"
-
-
+import { useState, FC } from "react"
 import Card from '../styledComponents/card'
 import Button from '../styledComponents/button'
 import Input from '../styledComponents/input'
@@ -19,7 +17,6 @@ const Encrypt: FC<props> = ({ web3 }) => {
     toEncrypt
   )
   
-
   return (
     <Card >
       <div>
