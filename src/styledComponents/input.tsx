@@ -6,7 +6,7 @@ const Input = styled.input`
   padding: 1rem;
   border-style: none;
   margin-top: 2rem;
-  margin-left: 1rem;
+  
 
   &::placeholder{
     color: gray

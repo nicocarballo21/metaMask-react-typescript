@@ -23,9 +23,7 @@ const Encrypt: FC<props> = ({ web3 }) => {
   return (
     <Card >
       <div>
-
         <P style={{ color: "white" }}>Here you can Encrypt / Decrypt</P>
-
         <Button onClick={functions.getPublicKey} disabled={publicKey? true: false}> Get encryption key </Button>
 
         {/* error message */}
@@ -45,9 +43,9 @@ const Encrypt: FC<props> = ({ web3 }) => {
 
         {encrypted && (
           <div>
-            <P>Your encrypted word is {encrypted} </P>
+            <P>Your encrypted word is: {encrypted} </P>
             <hr />
-            <h5 style={{ color: "white" }}>Decrypt action:</h5>
+            <P style={{ color: "white" }}>Decrypt action:</P>
 
             <Button onClick={functions.decrypt}> Decrypt </Button>
 
