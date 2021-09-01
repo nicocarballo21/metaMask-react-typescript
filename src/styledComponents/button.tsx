@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 const Button = styled.button`
     margin-right: 3px;
-    width: 100px;
+    margin-left: 3px;
+    width: 130px;
     height: 50px;
     border-radius: 10px;
     background-color: orange;
