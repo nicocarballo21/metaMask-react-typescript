@@ -1,8 +1,6 @@
 import { useState, FC } from "react";
 import Card from "../styledComponents/card";
-import Button from "../styledComponents/button";
-import Input from "../styledComponents/input";
-import P from "../styledComponents/p";
+
 
 import {
   useDecrypt,
@@ -39,37 +37,37 @@ const Encrypt: FC = () => {
   return (
     <Card>
       <div>
-        <P style={{ color: "white" }}>Here you can Encrypt / Decrypt</P>
-        <Button onClick={getKey} disabled={publicKey ? true : false}>
+        <p style={{ color: "white" }}>Here you can Encrypt / Decrypt</p>
+        <button onClick={getKey} disabled={publicKey ? true : false}>
           {" "}
           Get encryption key{" "}
-        </Button>
+        </button>
 
         {/* error message */}
-        {err && <P>Sorry! We can't encrypt anything without the key</P>}
+        {err && <p>Sorry! We can't encrypt anything without the key</p>}
 
         {publicKey && (
           <div>
-            <P>Your encrypt key is: {publicKey}</P>
-            <Input
+            <p>Your encrypt key is: {publicKey}</p>
+            <input
               placeholder="To encrypt.."
               onChange={({ target }) => settoEncrypt(target.value)}
-            ></Input>
+            ></input>
 
-            <Button onClick={handleEncrypt}> Encrypt </Button>
+            <button onClick={handleEncrypt}> Encrypt </button>
           </div>
         )}
 
         {state.encrypted && (
           <div>
-            <P>Your encrypted word is: {state.encrypted} </P>
+            <p>Your encrypted word is: {state.encrypted} </p>
             <hr />
-            <P style={{ color: "white" }}>Decrypt action:</P>
+            <p style={{ color: "white" }}>Decrypt action:</p>
 
-            <Button onClick={handleDecrypt}> Decrypt </Button>
+            <button onClick={handleDecrypt}> Decrypt </button>
 
             {state.decrypted && (
-              <P> Your word decrypted is: {state.decrypted}</P>
+              <p> Your word decrypted is: {state.decrypted}</p>
             )}
           </div>
         )}

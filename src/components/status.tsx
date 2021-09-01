@@ -1,5 +1,5 @@
 import useStatusNetwork from "../customHooks/useStatusNetwork"
-import Button from '../styledComponents/button'
+
 
 
 const Status = () => {
@@ -7,8 +7,8 @@ const Status = () => {
 
   return (
     <div>
-      <Button onClick={getNetworkId}> Network ID </Button>
-      <Button onClick={getChainId}> Chain ID </Button>
+      <button onClick={getNetworkId}> Network ID </button>
+      <button onClick={getChainId}> Chain ID </button>
     </div>
   )
 }

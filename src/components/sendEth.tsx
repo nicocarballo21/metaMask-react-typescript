@@ -1,9 +1,6 @@
 import { useState, FC } from "react";
 
 import Card from "../styledComponents/card";
-import P from "../styledComponents/p";
-import Button from "../styledComponents/button";
-import Input from "../styledComponents/input";
 import { useWeb3 } from "../customHooks/useWeb3";
 
 const SendEth: FC = () => {
@@ -33,9 +30,9 @@ const SendEth: FC = () => {
   return (
     <Card>
       <div>
-        <P>Here you can simulate eth transactions</P>
-        <Button onClick={send_eth}> Send eth </Button>
-        <Input
+        <p>Here you can simulate eth transactions</p>
+        <button onClick={send_eth}> Send eth </button>
+        <input
           type="text"
           placeholder="Select a eth amount to send"
           onChange={({ target }) => setvalue(target.value)}

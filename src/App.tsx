@@ -2,7 +2,9 @@ import Onboarding from "./components/onBoardingBtn";
 import SendEth from "./components/sendEth";
 import Encrypt from "./components/encrypt";
 import styled from "styled-components";
-import "./index.css";
+import GlobalStyles from "./globalStyles"
+
+
 import { WebProvider } from "./customHooks/useWeb3";
 
 const Container = styled.div`
@@ -16,6 +18,7 @@ function App() {
   return (
     <WebProvider>
       <Container>
+        <GlobalStyles/>
         <Onboarding />
         <SendEth />
         <Encrypt />
