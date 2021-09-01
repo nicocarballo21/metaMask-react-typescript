@@ -1,10 +1,21 @@
-import React from 'react';
+import styled from 'styled-components'
+import './index.css'
+import Onboarding from './components/onBoardingBtn'
+
+const Container = styled.div `
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0 200px 0 200px;
+`
 
 function App() {
   return (
-    <div className="App">
-     <h1>hello</h1>
-    </div>
+    <Container>
+      <Onboarding />
+      <h2>hl</h2>
+    </Container>
+  
   );
 }
 
