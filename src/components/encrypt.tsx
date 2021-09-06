@@ -1,52 +1,49 @@
 import { useState, FC } from "react"
 import Card from '../styledComponents/card'
-import Button from '../styledComponents/button'
-import Input from '../styledComponents/input'
-import P from '../styledComponents/p'
 
 import useEncrypt from "../customHooks/useEncrypt"
 
 interface props {
-    web3: any;
+  web3: any;
 }
 
 const Encrypt: FC<props> = ({ web3 }) => {
   const [toEncrypt, settoEncrypt] = useState("")
-  const [publicKey, err, decryptedWord, encrypted, functions ] = useEncrypt(
+  const [publicKey, err, decryptedWord, encrypted, functions] = useEncrypt(
     web3,
     toEncrypt
   )
-  
+
   return (
     <Card >
       <div>
-        <P style={{ color: "white" }}>Here you can Encrypt / Decrypt</P>
-        <Button onClick={functions.getPublicKey} disabled={publicKey? true: false}> Get encryption key </Button>
+        <p style={{ color: "white" }}>Here you can Encrypt / Decrypt</p>
+        <button onClick={functions.getPublicKey} disabled={publicKey ? true : false}> Get encryption key </button>
 
         {/* error message */}
-        {err && <P>Sorry! We can't encrypt anything without the key</P>}
+        {err && <p>Sorry! We can't encrypt anything without the key</p>}
 
         {publicKey && (
           <div>
-            <P>Your encrypt key is: {publicKey}</P>
-            <Input
+            <p>Your encrypt key is: {publicKey}</p>
+            <input
               placeholder="To encrypt.."
               onChange={({ target }) => settoEncrypt(target.value)}>
-            </Input>
+            </input>
 
-            <Button onClick={functions.encryptF}> Encrypt </Button>
+            <button onClick={functions.encryptF}> Encrypt </button>
           </div>
         )}
 
         {encrypted && (
           <div>
-            <P>Your encrypted word is: {encrypted} </P>
+            <p>Your encrypted word is: {encrypted} </p>
             <hr />
-            <P style={{ color: "white" }}>Decrypt action:</P>
+            <p style={{ color: "white" }}>Decrypt action:</p>
 
-            <Button onClick={functions.decrypt}> Decrypt </Button>
+            <button onClick={functions.decrypt}> Decrypt </button>
 
-            {decryptedWord && <P> Your word decrypted is: {decryptedWord}</P> }
+            {decryptedWord && <p> Your word decrypted is: {decryptedWord}</p>}
 
           </div>
         )}

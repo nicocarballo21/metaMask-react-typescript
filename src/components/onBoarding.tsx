@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react"
 import MetaMaskOnboarding from "@metamask/onboarding"
 
-import Button from '../styledComponents/button'
+
 import Card from '../styledComponents/card'
-import P from '../styledComponents/p'
 import Status from "./status"
 
 import styled from 'styled-components'
@@ -72,10 +71,10 @@ const OnboardingButton = () => {
   return (
     <Card>
       <BtnsContainer>
-          <Button onClick={onClick} disabled={isDisabled} >{buttonText}</Button>
+          <button onClick={onClick} disabled={isDisabled} >{buttonText}</button>
           <Status/>
       </BtnsContainer>
-      <P>Account: {accounts}</P>
+      <p>Account: {accounts}</p>
     </Card>
   )
 }
